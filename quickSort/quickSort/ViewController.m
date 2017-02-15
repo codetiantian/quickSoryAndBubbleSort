@@ -19,14 +19,14 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     NSMutableArray *array = [NSMutableArray arrayWithObjects:@2, @8, @6, @5, @1, @4, @7, @3, nil];
-//    int right = (int)array.count - 1;
-//    [self quickSortTestWithArray:array withLeft:0 andRight:right];
+    int right = (int)array.count - 1;
+    [self quickSortTestWithArray:array withLeft:0 andRight:right];
     
-//    NSLog(@"---%@", array);
+    NSLog(@"---%@", array);
     
     //  冒泡排序
-    [self bubleSortWithArray:array];
-    NSLog(@"---%@", array);
+//    [self bubleSortWithArray:array];
+//    NSLog(@"---%@", array);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,5 +79,83 @@
         }
     }
 }
+
+
+
+
+//
+
+
+- (void)quickSortByArray:(NSMutableArray *)array withLeftValue:(int)left withRightValue:(int)right
+{
+    if (left >= right) {
+        return;
+    }
+    
+    
+    int i = left;
+    int j = right;
+    
+    int temp = [array[left] intValue];
+    
+    while (i < j) {
+        while (i < j && temp <= [array[j] intValue]) {
+            j--;
+        }
+        array[i] = array[j];
+        
+        while (i < j && temp >= [array[i] intValue]) {
+            i++;
+        }
+        array[j] = array[i];
+    }
+    
+    array[i] = [NSNumber numberWithInt:temp];
+    
+    [self quickSortByArray:array withLeftValue:left withRightValue:i - 1];
+    [self quickSortByArray:array withLeftValue:i + 1 withRightValue:right];
+}
+
+
+
+
+
+
+
+
+
+#pragma mark - 冒泡排序
+- (void)sortByBubbling:(NSMutableArray *)array
+{
+    int i, j, temp;
+    
+    for (i = 0; i < array.count - 1; i++) {
+        for (j = 0; j < array.count - 1 - i; j++) {
+            if ([array[j] intValue] > [array[j + 1] intValue]) {
+                temp = [array[j] intValue];
+                array[j] = array[j + 1];
+                array[j + 1] = [NSNumber numberWithInt:temp];
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
