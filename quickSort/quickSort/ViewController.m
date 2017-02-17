@@ -23,6 +23,7 @@
     [self quickSortTestWithArray:array withLeft:0 andRight:right];
     
     NSLog(@"---%@", array);
+
     
     //  冒泡排序
 //    [self bubleSortWithArray:array];
